@@ -1,4 +1,4 @@
-# WP Awesome Widgets
+# WP Profile Box
 
 [![Build Status](https://travis-ci.org/inc2734/wp-profile-box.svg?branch=master)](https://travis-ci.org/inc2734/wp-profile-box)
 [![Latest Stable Version](https://poser.pugx.org/inc2734/wp-profile-box/v/stable)](https://packagist.org/packages/inc2734/wp-profile-box)
