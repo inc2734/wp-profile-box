@@ -5,17 +5,26 @@
  * @license GPL-2.0+
  */
 
+/**
+ * Display profile box
+ */
 class Inc2734_WP_Profile_Box {
 
 	public function __construct() {
 		load_textdomain( 'inc2734-wp-profile-box', __DIR__ . '/languages/' . get_locale() . '.mo' );
 
 		add_filter( 'user_contactmethods', [ $this, '_detail_url' ] );
-		add_filter( 'user_contactmethods', [ $this, '_social_accounts' ] );
+		add_filter( 'user_contactmethods', [ $this, '_sns_accounts' ] );
 
 		add_shortcode( 'wp_profile_box', [ $this, '_shortcode' ] );
 	}
 
+	/**
+	 * Adds detail url setting
+	 *
+	 * @param  array  $user_contactmethods
+	 * @return array
+	 */
 	public function _detail_url( $user_contactmethods = [] ) {
 		$user_contactmethods = array_merge( $user_contactmethods, [
 			'detail' => __( 'Detail page', 'inc2734-wp-profile-box' ),
@@ -24,7 +33,13 @@ class Inc2734_WP_Profile_Box {
 		return $user_contactmethods;
 	}
 
-	public function _social_accounts( $user_contactmethods = [] ) {
+	/**
+	 * Adds SNS accounts settings
+	 *
+	 * @param  array  $user_contactmethods
+	 * @return array
+	 */
+	public function _sns_accounts( $user_contactmethods = [] ) {
 		$user_contactmethods = array_merge( $user_contactmethods, [
 			'twitter'   => __( 'Twitter'  , 'inc2734-wp-profile-box' ),
 			'facebook'  => __( 'Facebook' , 'inc2734-wp-profile-box' ),
@@ -38,6 +53,12 @@ class Inc2734_WP_Profile_Box {
 		return $user_contactmethods;
 	}
 
+	/**
+	 * Registers shortcode
+	 *
+	 * @param  array  $attributes
+	 * @return void
+	 */
 	public function _shortcode( $attributes = [] ) {
 		$attributes = shortcode_atts( [
 			'user_id' => get_the_author_meta( 'ID' ),
@@ -74,16 +95,16 @@ class Inc2734_WP_Profile_Box {
 					</div>
 
 					<?php
-					$social_account_labels = array_merge( [
+					$sns_account_labels = array_merge( [
 						'url' => __( 'Web Site', 'inc2734-wp-profile-box' ),
-					], $this->_social_accounts() );
+					], $this->_sns_accounts() );
 
-					$social_accounts = $this->_get_social_accounts( $attributes['user_id'] );
+					$sns_accounts = $this->_get_sns_accounts( $attributes['user_id'] );
 					?>
-					<?php if ( $social_accounts ) : ?>
-						<ul class="wp-profile-box__social-accounts">
-							<?php foreach ( $social_accounts as $key => $url ) : ?>
-								<li class="wp-profile-box__social-accounts-item wp-profile-box__social-accounts-item--<?php echo esc_attr( $key ); ?>"><a href="<?php echo esc_url( $url ); ?>" target="_blank"><?php echo esc_html( $social_account_labels[ $key ] ); ?></a></li>
+					<?php if ( $sns_accounts ) : ?>
+						<ul class="wp-profile-box__sns-accounts">
+							<?php foreach ( $sns_accounts as $key => $url ) : ?>
+								<li class="wp-profile-box__sns-accounts-item wp-profile-box__sns-accounts-item--<?php echo esc_attr( $key ); ?>"><a href="<?php echo esc_url( $url ); ?>" target="_blank"><?php echo esc_html( $sns_account_labels[ $key ] ); ?></a></li>
 							<?php endforeach; ?>
 						</ul>
 					<?php endif; ?>
@@ -94,9 +115,16 @@ class Inc2734_WP_Profile_Box {
 		return ob_get_clean();
 	}
 
+	/**
+	 * Returns detail page URL
+	 *
+	 * @param  int $user_id
+	 * @return string
+	 */
 	protected function _get_detail_page_url( $user_id ) {
 		$detail_keys = $this->_detail_url();
-		foreach ( $detail_keys as $key => $label ) {
+		$detail_keys = array_keys( $detail_keys );
+		foreach ( $detail_keys as $key ) {
 			$detail_url = get_the_author_meta( $key, $user_id );
 			if ( $detail_url ) {
 				return $detail_url;
@@ -104,21 +132,28 @@ class Inc2734_WP_Profile_Box {
 		}
 	}
 
-	protected function _get_social_accounts( $user_id ) {
-		$social_account_keys = array_merge( [
+	/**
+	 * Returns SNS account URLs
+	 *
+	 * @param  int $user_id
+	 * @return array
+	 */
+	protected function _get_sns_accounts( $user_id ) {
+		$sns_account_keys = array_merge( [
 			'url' => __( 'Web Site', 'inc2734-wp-profile-box' ),
-		], $this->_social_accounts() );
+		], $this->_sns_accounts() );
+		$sns_account_keys = array_keys( $sns_account_keys );
 
-		$social_accounts = [];
+		$sns_accounts = [];
 
-		foreach ( $social_account_keys as $social_account_key => $label ) {
-			$social_account = get_the_author_meta( $social_account_key, $user_id );
-			if ( ! $social_account ) {
+		foreach ( $sns_account_keys as $sns_account_key ) {
+			$sns_account = get_the_author_meta( $sns_account_key, $user_id );
+			if ( ! $sns_account ) {
 				continue;
 			}
-			$social_accounts[ $social_account_key ] = $social_account;
+			$sns_accounts[ $sns_account_key ] = $sns_account;
 		}
 
-		return $social_accounts;
+		return $sns_accounts;
 	}
 }
