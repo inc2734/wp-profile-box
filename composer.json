@@ -1,8 +1,8 @@
 {
   "name": "inc2734/wp-profile-box",
   "description": "A library to add profile box for WordPress.",
-  "license": "GPL-2.0+",
-  "version": "0.1.1",
+  "license": "GPL-2.0-or-later",
+  "version": "1.0.0",
   "require": {
     "php": ">=5.6"
   },
