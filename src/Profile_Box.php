@@ -12,19 +12,19 @@ class Profile_Box {
 	public function __construct() {
 		load_textdomain( 'inc2734-wp-profile-box', __DIR__ . '/languages/' . get_locale() . '.mo' );
 
-		add_filter( 'user_contactmethods', [ $this, '_detail_url' ] );
-		add_filter( 'user_contactmethods', [ $this, '_sns_accounts' ] );
+		add_filter( 'user_contactmethods', [ $this, '_add_detail_url_field' ] );
+		add_filter( 'user_contactmethods', [ $this, '_add_sns_account_fields' ] );
 
 		add_shortcode( 'wp_profile_box', [ $this, '_shortcode' ] );
 	}
 
 	/**
-	 * Adds detail url setting
+	 * Adds detail url field
 	 *
 	 * @param  array  $user_contactmethods
 	 * @return array
 	 */
-	public function _detail_url( $user_contactmethods = [] ) {
+	public function _add_detail_url_field( $user_contactmethods = [] ) {
 		$user_contactmethods = array_merge( $user_contactmethods, [
 			'detail' => __( 'Detail page', 'inc2734-wp-profile-box' ),
 		] );
@@ -33,13 +33,27 @@ class Profile_Box {
 	}
 
 	/**
-	 * Adds SNS accounts settings
+	 * Adds sns account fields
 	 *
 	 * @param  array  $user_contactmethods
 	 * @return array
 	 */
-	public function _sns_accounts( $user_contactmethods = [] ) {
-		$user_contactmethods = array_merge( $user_contactmethods, [
+	public function _add_sns_account_fields( $user_contactmethods = [] ) {
+		$sns_accounts = $this->_sns_accounts();
+		unset( $sns_accounts['url'] );
+		$user_contactmethods = array_merge( $user_contactmethods, $sns_accounts );
+
+		return $user_contactmethods;
+	}
+
+	/**
+	 * Adds SNS accounts settings
+	 *
+	 * @return array
+	 */
+	protected function _sns_accounts() {
+		$user_contactmethods = apply_filters( 'inc2734_wp_profile_box_sns_accounts', [
+			'url'       => __( 'Web Site', 'inc2734-wp-profile-box' ),
 			'twitter'   => __( 'Twitter', 'inc2734-wp-profile-box' ),
 			'facebook'  => __( 'Facebook', 'inc2734-wp-profile-box' ),
 			'instagram' => __( 'Instagram', 'inc2734-wp-profile-box' ),
@@ -94,16 +108,14 @@ class Profile_Box {
 					</div>
 
 					<?php
-					$sns_account_labels = array_merge( [
-						'url' => __( 'Web Site', 'inc2734-wp-profile-box' ),
-					], $this->_sns_accounts() );
+					$sns_account_labels = $this->_sns_accounts();
 
 					$sns_accounts = $this->_get_sns_accounts( $attributes['user_id'] );
 					?>
 					<?php if ( $sns_accounts ) : ?>
 						<ul class="wp-profile-box__sns-accounts">
 							<?php foreach ( $sns_accounts as $key => $url ) : ?>
-								<li class="wp-profile-box__sns-accounts-item wp-profile-box__sns-accounts-item--<?php echo esc_attr( $key ); ?>"><a href="<?php echo esc_url( $url ); ?>" target="_blank"><?php echo esc_html( $sns_account_labels[ $key ] ); ?></a></li>
+								<li class="wp-profile-box__sns-accounts-item wp-profile-box__sns-accounts-item--<?php echo esc_attr( $key ); ?>"><a href="<?php echo esc_url( $url ); ?>" target="_blank"><?php echo wp_kses_post( $sns_account_labels[ $key ] ); ?></a></li>
 							<?php endforeach; ?>
 						</ul>
 					<?php endif; ?>
@@ -121,7 +133,7 @@ class Profile_Box {
 	 * @return string
 	 */
 	protected function _get_detail_page_url( $user_id ) {
-		$detail_keys = $this->_detail_url();
+		$detail_keys = $this->_add_detail_url_field();
 		$detail_keys = array_keys( $detail_keys );
 		foreach ( $detail_keys as $key ) {
 			$detail_url = get_the_author_meta( $key, $user_id );
@@ -138,10 +150,8 @@ class Profile_Box {
 	 * @return array
 	 */
 	protected function _get_sns_accounts( $user_id ) {
-		$sns_account_keys = array_merge( [
-			'url' => __( 'Web Site', 'inc2734-wp-profile-box' ),
-		], $this->_sns_accounts() );
-		$sns_account_keys = array_keys( $sns_account_keys );
+		$sns_accounts     = $this->_sns_accounts();
+		$sns_account_keys = array_keys( $sns_accounts );
 
 		$sns_accounts = [];
 
