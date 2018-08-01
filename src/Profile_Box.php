@@ -82,7 +82,7 @@ class Profile_Box {
 			<h2 class="wp-profile-box__title"><?php esc_html_e( 'Bio', 'inc2734-wp-profile-box' ); ?></h2>
 			<div class="wp-profile-box__container">
 				<div class="wp-profile-box__figure">
-					<?php echo get_avatar( $attributes['user_id'] ); ?>
+					<?php echo get_avatar( $attributes['user_id'], apply_filters( 'inc2734_wp_profile_box_avatar_size', 96 ) ); ?>
 				</div>
 				<div class="wp-profile-box__body">
 					<h3 class="wp-profile-box__name">
