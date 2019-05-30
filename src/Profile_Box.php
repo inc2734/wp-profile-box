@@ -57,6 +57,7 @@ class Profile_Box {
 			'twitter'   => __( 'Twitter', 'inc2734-wp-profile-box' ),
 			'facebook'  => __( 'Facebook', 'inc2734-wp-profile-box' ),
 			'instagram' => __( 'Instagram', 'inc2734-wp-profile-box' ),
+			'pinterest' => __( 'Pinterest', 'inc2734-wp-profile-box' ),
 			'youtube'   => __( 'YouTube', 'inc2734-wp-profile-box' ),
 			'linkedin'  => __( 'Linkedin', 'inc2734-wp-profile-box' ),
 			'wordpress' => __( 'WordPress', 'inc2734-wp-profile-box' ),

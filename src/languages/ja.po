@@ -4,57 +4,61 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://make.wordpress.org/polyglots/\n"
-"POT-Creation-Date: 2017-09-14 11:22+0900\n"
+"POT-Creation-Date: 2019-05-30 00:28:49+00:00\n"
+"PO-Revision-Date: 2019-05-30 09:29+0900\n"
+"Last-Translator: inc2734 <inc@2inc.org>\n"
+"Language-Team: \n"
+"Language: ja_JP\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-09-14 11:23+0900\n"
-"Language-Team: \n"
-"X-Generator: Poedit 1.8.4\n"
-"Last-Translator: inc2734 <inc@2inc.org>\n"
+"X-Generator: Poedit 2.0.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Language: ja_JP\n"
 
-#: wp-profile-box.php:21 wp-profile-box.php:67
+#: Profile_Box.php:29 Profile_Box.php:102
 msgid "Detail page"
 msgstr "詳細はこちら"
 
-#: wp-profile-box.php:29
+#: Profile_Box.php:56
+msgid "Web Site"
+msgstr "ウェブサイト"
+
+#: Profile_Box.php:57
 msgid "Twitter"
 msgstr "Twitter"
 
-#: wp-profile-box.php:30
+#: Profile_Box.php:58
 msgid "Facebook"
 msgstr "Facebook"
 
-#: wp-profile-box.php:31
+#: Profile_Box.php:59
 msgid "Instagram"
 msgstr "Instagram"
 
-#: wp-profile-box.php:32
+#: Profile_Box.php:60
+msgid "Pinterest"
+msgstr "Pinterest"
+
+#: Profile_Box.php:61
 msgid "YouTube"
 msgstr "YouTube"
 
-#: wp-profile-box.php:33
+#: Profile_Box.php:62
 msgid "Linkedin"
 msgstr "Linkedin"
 
-#: wp-profile-box.php:34
+#: Profile_Box.php:63
 msgid "WordPress"
 msgstr "WordPress"
 
-#: wp-profile-box.php:35
+#: Profile_Box.php:64
 msgid "Tumblr"
-msgstr "Tumblr:"
+msgstr "Tumblr"
 
-#: wp-profile-box.php:48
+#: Profile_Box.php:83
 msgid "Bio"
 msgstr "この記事を書いた人"
 
-#: wp-profile-box.php:72
+#: Profile_Box.php:107
 msgid "Archives"
 msgstr "記事一覧"
-
-#: wp-profile-box.php:78 wp-profile-box.php:109
-msgid "Web Site"
-msgstr "ウェブサイト"
