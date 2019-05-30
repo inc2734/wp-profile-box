@@ -13,8 +13,7 @@ $ composer require inc2734/wp-profile-box
 ## How to use
 ```
 <?php
-// When Using composer auto loader
-new Inc2734\WP_Profile_Box\Profile_Box();
+new \Inc2734\WP_Profile_Box\Bootstrap();
 
 // shortcode
 [wp_profile_box user_id="(Optional)"]
@@ -26,6 +25,7 @@ The profile box don't have styles. So you need create CSS for this.
 * Twitter
 * Facebook
 * Instagram
+* Pinterest
 * YouTube
 * Linkedin
 * WordPress

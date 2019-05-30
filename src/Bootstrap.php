@@ -7,7 +7,7 @@
 
 namespace Inc2734\WP_Profile_Box;
 
-class Profile_Box {
+class Bootstrap {
 
 	public function __construct() {
 		load_textdomain( 'inc2734-wp-profile-box', __DIR__ . '/languages/' . get_locale() . '.mo' );
