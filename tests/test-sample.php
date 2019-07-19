@@ -14,6 +14,6 @@ class Sample_Test extends WP_UnitTestCase {
 	 * @test
 	 */
 	public function sample() {
-		new Inc2734\WP_Profile_Box\Profile_Box();
+		new Inc2734\WP_Profile_Box\Bootstrap();
 	}
 }

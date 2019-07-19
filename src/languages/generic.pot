@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: https://make.wordpress.org/polyglots/\n"
-"POT-Creation-Date: 2019-05-30 00:28:49+00:00\n"
+"POT-Creation-Date: 2019-07-19 01:38:39+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,50 +12,54 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: Profile_Box.php:29 Profile_Box.php:102
+#: Bootstrap.php:29 Bootstrap.php:103
 msgid "Detail page"
 msgstr ""
 
-#: Profile_Box.php:56
+#: Bootstrap.php:56
 msgid "Web Site"
 msgstr ""
 
-#: Profile_Box.php:57
+#: Bootstrap.php:57
 msgid "Twitter"
 msgstr ""
 
-#: Profile_Box.php:58
+#: Bootstrap.php:58
 msgid "Facebook"
 msgstr ""
 
-#: Profile_Box.php:59
+#: Bootstrap.php:59
 msgid "Instagram"
 msgstr ""
 
-#: Profile_Box.php:60
+#: Bootstrap.php:60
 msgid "Pinterest"
 msgstr ""
 
-#: Profile_Box.php:61
+#: Bootstrap.php:61
 msgid "YouTube"
 msgstr ""
 
-#: Profile_Box.php:62
+#: Bootstrap.php:62
 msgid "Linkedin"
 msgstr ""
 
-#: Profile_Box.php:63
+#: Bootstrap.php:63
 msgid "WordPress"
 msgstr ""
 
-#: Profile_Box.php:64
+#: Bootstrap.php:64
 msgid "Tumblr"
 msgstr ""
 
-#: Profile_Box.php:83
+#: Bootstrap.php:65
+msgid "Amazon"
+msgstr ""
+
+#: Bootstrap.php:84
 msgid "Bio"
 msgstr ""
 
-#: Profile_Box.php:107
+#: Bootstrap.php:108
 msgid "Archives"
 msgstr ""

@@ -62,6 +62,7 @@ class Bootstrap {
 			'linkedin'  => __( 'Linkedin', 'inc2734-wp-profile-box' ),
 			'wordpress' => __( 'WordPress', 'inc2734-wp-profile-box' ),
 			'tumblr'    => __( 'Tumblr', 'inc2734-wp-profile-box' ),
+			'amazon'    => __( 'Amazon', 'inc2734-wp-profile-box' ),
 		] );
 
 		return $user_contactmethods;
