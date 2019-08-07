@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://make.wordpress.org/polyglots/\n"
-"POT-Creation-Date: 2019-07-19 01:38:39+00:00\n"
-"PO-Revision-Date: 2019-07-19 10:39+0900\n"
+"POT-Creation-Date: 2019-08-07 05:36:01+00:00\n"
+"PO-Revision-Date: 2019-08-07 14:36+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: \n"
 "Language: ja_JP\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Generator: Poedit 2.0.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: Bootstrap.php:29 Bootstrap.php:103
+#: Bootstrap.php:29 Bootstrap.php:104
 msgid "Detail page"
 msgstr "詳細はこちら"
 
@@ -59,10 +59,14 @@ msgstr "Tumblr"
 msgid "Amazon"
 msgstr "Amazon"
 
-#: Bootstrap.php:84
+#: Bootstrap.php:66
+msgid "LINE"
+msgstr "LINE"
+
+#: Bootstrap.php:85
 msgid "Bio"
 msgstr "この記事を書いた人"
 
-#: Bootstrap.php:108
+#: Bootstrap.php:109
 msgid "Archives"
 msgstr "記事一覧"
