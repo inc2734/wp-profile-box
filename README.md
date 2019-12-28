@@ -30,3 +30,5 @@ The profile box don't have styles. So you need create CSS for this.
 * Linkedin
 * WordPress
 * Tumblr
+* amazon
+* LINE
