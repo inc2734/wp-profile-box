@@ -32,3 +32,39 @@ The profile box don't have styles. So you need create CSS for this.
 * Tumblr
 * amazon
 * LINE
+
+## Filter hooks
+
+### inc2734_wp_profile_box_sns_accounts
+
+```
+/**
+ * Customize sns accounts
+ *
+ * @param $accounts array
+ * @return array
+ */
+add_filter(
+	'inc2734_wp_profile_box_sns_accounts',
+	function( $accounts ) {
+		return $accounts;
+	}
+);
+```
+
+### inc2734_wp_profile_box_avatar_size
+
+```
+/**
+ * Customizer avatar size
+ *
+ * @param $size
+ * @return $size
+ */
+add_filter(
+	'inc2734_wp_profile_box_avatar_size',
+	function( $size ) {
+		return $size;
+	}
+);
+```
