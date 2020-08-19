@@ -89,7 +89,10 @@ class Bootstrap {
 		ob_start();
 		?>
 		<div class="wp-profile-box">
-			<h2 class="wp-profile-box__title"><?php echo esc_html( $attributes['title'] ); ?></h2>
+			<?php if ( ! empty( $attributes['title'] ) ) : ?>
+				<h2 class="wp-profile-box__title"><?php echo esc_html( $attributes['title'] ); ?></h2>
+			<?php endif; ?>
+
 			<div class="wp-profile-box__container">
 				<div class="wp-profile-box__figure">
 					<?php echo get_avatar( $attributes['user_id'], apply_filters( 'inc2734_wp_profile_box_avatar_size', 96 ) ); ?>
