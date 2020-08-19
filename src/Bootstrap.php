@@ -80,6 +80,7 @@ class Bootstrap {
 	public function _shortcode( $attributes = [] ) {
 		$attributes = shortcode_atts(
 			[
+				'title'   => __( 'Bio', 'inc2734-wp-profile-box' ),
 				'user_id' => get_the_author_meta( 'ID' ),
 			],
 			$attributes
@@ -88,7 +89,7 @@ class Bootstrap {
 		ob_start();
 		?>
 		<div class="wp-profile-box">
-			<h2 class="wp-profile-box__title"><?php esc_html_e( 'Bio', 'inc2734-wp-profile-box' ); ?></h2>
+			<h2 class="wp-profile-box__title"><?php echo esc_html( $attributes['title'] ); ?></h2>
 			<div class="wp-profile-box__container">
 				<div class="wp-profile-box__figure">
 					<?php echo get_avatar( $attributes['user_id'], apply_filters( 'inc2734_wp_profile_box_avatar_size', 96 ) ); ?>
