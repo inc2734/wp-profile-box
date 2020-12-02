@@ -1,0 +1,9 @@
+{
+  "core": null,
+  "mappings": {
+    "wp-content/plugins/wp-profile-box": "./"
+  },
+  "config": {
+    "WP_DEBUG": true
+  }
+}

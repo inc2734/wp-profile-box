@@ -1,6 +1,6 @@
 # WP Profile Box
 
-[![Build Status](https://travis-ci.com/inc2734/wp-profile-box.svg?branch=master)](https://travis-ci.com/inc2734/wp-profile-box)
+![CI](https://github.com/inc2734/wp-profile-box/workflows/CI/badge.svg)
 [![Latest Stable Version](https://poser.pugx.org/inc2734/wp-profile-box/v/stable)](https://packagist.org/packages/inc2734/wp-profile-box)
 [![License](https://poser.pugx.org/inc2734/wp-profile-box/license)](https://packagist.org/packages/inc2734/wp-profile-box)
 

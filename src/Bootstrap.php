@@ -9,6 +9,9 @@ namespace Inc2734\WP_Profile_Box;
 
 class Bootstrap {
 
+	/**
+	 * Constructor.
+	 */
 	public function __construct() {
 		load_textdomain( 'inc2734-wp-profile-box', __DIR__ . '/languages/' . get_locale() . '.mo' );
 
@@ -21,12 +24,12 @@ class Bootstrap {
 	/**
 	 * Adds detail url field
 	 *
-	 * @param  array  $user_contactmethods
+	 * @param array $methods Array of contact method labels keyed by contact method.
 	 * @return array
 	 */
-	public function _add_detail_url_field( $user_contactmethods = [] ) {
+	public function _add_detail_url_field( $methods = [] ) {
 		return array_merge(
-			$user_contactmethods,
+			$methods,
 			[
 				'detail' => __( 'Detail page', 'inc2734-wp-profile-box' ),
 			]
@@ -34,21 +37,21 @@ class Bootstrap {
 	}
 
 	/**
-	 * Adds sns account fields
+	 * Adds sns account fields.
 	 *
-	 * @param  array  $user_contactmethods
+	 * @param array $methods Array of contact method labels keyed by contact method.
 	 * @return array
 	 */
-	public function _add_sns_account_fields( $user_contactmethods = [] ) {
+	public function _add_sns_account_fields( $methods = [] ) {
 		$sns_accounts = $this->_sns_accounts();
 		unset( $sns_accounts['url'] );
-		$user_contactmethods = array_merge( $user_contactmethods, $sns_accounts );
+		$methods = array_merge( $methods, $sns_accounts );
 
-		return $user_contactmethods;
+		return $methods;
 	}
 
 	/**
-	 * Adds SNS accounts settings
+	 * Adds SNS accounts settings.
 	 *
 	 * @return array
 	 */
@@ -72,16 +75,16 @@ class Bootstrap {
 	}
 
 	/**
-	 * Registers shortcode
+	 * Registers shortcode.
 	 *
-	 * @param  array  $attributes
-	 * @return void
+	 * @param array $attributes The shortcode attributes.
 	 */
 	public function _shortcode( $attributes = [] ) {
 		$attributes = shortcode_atts(
 			[
-				'title'   => __( 'Bio', 'inc2734-wp-profile-box' ),
-				'user_id' => get_the_author_meta( 'ID' ),
+				'title'             => __( 'Bio', 'inc2734-wp-profile-box' ),
+				'in_same_post_type' => false,
+				'user_id'           => get_the_author_meta( 'ID' ),
 			],
 			$attributes
 		);
@@ -115,7 +118,23 @@ class Bootstrap {
 							</a>
 						<?php endif; ?>
 
-						<a class="wp-profile-box__archives-btn" href="<?php echo esc_url( get_author_posts_url( $attributes['user_id'] ) ); ?>">
+						<?php
+						$author_posts_url = get_author_posts_url( $attributes['user_id'] );
+						if ( $attributes['in_same_post_type'] ) {
+							$author_posts_url_query_string = parse_url( $author_posts_url, PHP_URL_QUERY );
+							if ( $author_posts_url_query_string ) {
+								$author_posts_url = str_replace(
+									'?' . $author_posts_url_query_string,
+									'',
+									$author_posts_url
+								);
+							}
+							parse_str( $author_posts_url_query_string, $author_posts_url_query );
+							$author_posts_url_query['post_type'] = get_post_type();
+							$author_posts_url                   .= '?' . http_build_query( $author_posts_url_query, '', '&amp;' );
+						}
+						?>
+						<a class="wp-profile-box__archives-btn" href="<?php echo esc_url( $author_posts_url ); ?>">
 							<?php esc_html_e( 'Archives', 'inc2734-wp-profile-box' ); ?>
 						</a>
 					</div>
@@ -140,9 +159,9 @@ class Bootstrap {
 	}
 
 	/**
-	 * Returns detail page URL
+	 * Returns detail page URL.
 	 *
-	 * @param  int $user_id
+	 * @param int $user_id User ID.
 	 * @return string
 	 */
 	protected function _get_detail_page_url( $user_id ) {
@@ -157,9 +176,9 @@ class Bootstrap {
 	}
 
 	/**
-	 * Returns SNS account URLs
+	 * Returns SNS account URLs.
 	 *
-	 * @param  int $user_id
+	 * @param int $user_id User ID.
 	 * @return array
 	 */
 	protected function _get_sns_accounts( $user_id ) {
