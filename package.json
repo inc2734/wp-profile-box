@@ -2,7 +2,7 @@
   "author": "inc2734",
   "license": "GPL-2.0+",
   "devDependencies": {
-    "@wordpress/env": "^2.1.0",
+    "@wordpress/env": "^8.4.0",
     "npm-run-all": "^4.1.5"
   },
   "scripts": {
@@ -10,12 +10,14 @@
     "start": "wp-env start",
     "stop": "wp-env stop",
     "cli": "wp-env run cli",
-    "wp": "wp-env run cli wp",
-    "pretest": "wp-env start && wp-env run composer 'install --no-interaction'",
-    "test:lint:php": "wp-env run composer run-script lint",
+    "wp": "wp-env run cli --env-cwd=\"wp-content/plugins/wp-profile-box\" wp",
+    "composer": "wp-env run cli --env-cwd=\"wp-content/plugins/wp-profile-box\" composer",
+    "pretest": "wp-env start && npm run composer install -- --no-interaction",
+    "test:lint:php": "npm run composer lint",
     "test:lint": "run-s test:lint:*",
-    "test:unit:php": "wp-env run phpunit 'phpunit -c /var/www/html/wp-content/plugins/wp-profile-box/.phpunit.xml.dist --verbose'",
+    "test:unit:php": "wp-env start && wp-env run --env-cwd=\"wp-content/plugins/wp-profile-box\" tests-wordpress vendor/bin/phpunit -c .phpunit.xml.dist --verbose",
     "test:unit": "run-s test:unit:*",
-    "test": "run-s test:*"
+    "test": "run-s test:*",
+    "make-pot": "npm run wp i18n -- make-pot ./src ./src/languages/generic.pot --domain=inc2734-wp-profile-box"
   }
 }

@@ -15,10 +15,10 @@ class Bootstrap {
 	public function __construct() {
 		load_textdomain( 'inc2734-wp-profile-box', __DIR__ . '/languages/' . get_locale() . '.mo' );
 
-		add_filter( 'user_contactmethods', [ $this, '_add_detail_url_field' ] );
-		add_filter( 'user_contactmethods', [ $this, '_add_sns_account_fields' ] );
+		add_filter( 'user_contactmethods', array( $this, '_add_detail_url_field' ) );
+		add_filter( 'user_contactmethods', array( $this, '_add_sns_account_fields' ) );
 
-		add_shortcode( 'wp_profile_box', [ $this, '_shortcode' ] );
+		add_shortcode( 'wp_profile_box', array( $this, '_shortcode' ) );
 	}
 
 	/**
@@ -27,12 +27,12 @@ class Bootstrap {
 	 * @param array $methods Array of contact method labels keyed by contact method.
 	 * @return array
 	 */
-	public function _add_detail_url_field( $methods = [] ) {
+	public function _add_detail_url_field( $methods = array() ) {
 		return array_merge(
 			$methods,
-			[
+			array(
 				'detail' => __( 'Detail page', 'inc2734-wp-profile-box' ),
-			]
+			)
 		);
 	}
 
@@ -42,7 +42,7 @@ class Bootstrap {
 	 * @param array $methods Array of contact method labels keyed by contact method.
 	 * @return array
 	 */
-	public function _add_sns_account_fields( $methods = [] ) {
+	public function _add_sns_account_fields( $methods = array() ) {
 		$sns_accounts = $this->_sns_accounts();
 		unset( $sns_accounts['url'] );
 		$methods = array_merge( $methods, $sns_accounts );
@@ -58,9 +58,10 @@ class Bootstrap {
 	protected function _sns_accounts() {
 		return apply_filters(
 			'inc2734_wp_profile_box_sns_accounts',
-			[
+			array(
 				'url'       => __( 'Web Site', 'inc2734-wp-profile-box' ),
 				'twitter'   => __( 'Twitter', 'inc2734-wp-profile-box' ),
+				'x'         => __( 'X', 'inc2734-wp-profile-box' ),
 				'facebook'  => __( 'Facebook', 'inc2734-wp-profile-box' ),
 				'instagram' => __( 'Instagram', 'inc2734-wp-profile-box' ),
 				'pinterest' => __( 'Pinterest', 'inc2734-wp-profile-box' ),
@@ -70,7 +71,7 @@ class Bootstrap {
 				'tumblr'    => __( 'Tumblr', 'inc2734-wp-profile-box' ),
 				'amazon'    => __( 'Amazon', 'inc2734-wp-profile-box' ),
 				'line'      => __( 'LINE', 'inc2734-wp-profile-box' ),
-			]
+			)
 		);
 	}
 
@@ -79,13 +80,13 @@ class Bootstrap {
 	 *
 	 * @param array $attributes The shortcode attributes.
 	 */
-	public function _shortcode( $attributes = [] ) {
+	public function _shortcode( $attributes = array() ) {
 		$attributes = shortcode_atts(
-			[
+			array(
 				'title'             => __( 'Bio', 'inc2734-wp-profile-box' ),
 				'in_same_post_type' => false,
 				'user_id'           => get_the_author_meta( 'ID' ),
-			],
+			),
 			$attributes
 		);
 
@@ -185,7 +186,7 @@ class Bootstrap {
 		$sns_accounts     = $this->_sns_accounts();
 		$sns_account_keys = array_keys( $sns_accounts );
 
-		$sns_accounts = [];
+		$sns_accounts = array();
 
 		foreach ( $sns_account_keys as $sns_account_key ) {
 			$sns_account = get_the_author_meta( $sns_account_key, $user_id );

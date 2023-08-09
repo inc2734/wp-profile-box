@@ -1,5 +1,4 @@
 .DS_Store
 vendor/
-composer.lock
-package-lock.json
 node_modules/
+.phpunit.result.cache

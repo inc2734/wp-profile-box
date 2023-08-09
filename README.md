@@ -23,6 +23,7 @@ The profile box don't have styles. So you need create CSS for this.
 
 ## Support social accounts
 * Twitter
+* X
 * Facebook
 * Instagram
 * Pinterest
