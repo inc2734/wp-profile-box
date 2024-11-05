@@ -13,12 +13,18 @@ class Bootstrap {
 	 * Constructor.
 	 */
 	public function __construct() {
-		load_textdomain( 'inc2734-wp-profile-box', __DIR__ . '/languages/' . get_locale() . '.mo' );
-
+		add_filter( 'init', array( $this, '_init' ) );
 		add_filter( 'user_contactmethods', array( $this, '_add_detail_url_field' ) );
 		add_filter( 'user_contactmethods', array( $this, '_add_sns_account_fields' ) );
 
 		add_shortcode( 'wp_profile_box', array( $this, '_shortcode' ) );
+	}
+
+	/**
+	 * Load textdomain.
+	 */
+	public function _init() {
+		load_textdomain( 'inc2734-wp-profile-box', __DIR__ . '/languages/' . get_locale() . '.mo' );
 	}
 
 	/**
@@ -122,7 +128,7 @@ class Bootstrap {
 						<?php
 						$author_posts_url = get_author_posts_url( $attributes['user_id'] );
 						if ( $attributes['in_same_post_type'] ) {
-							$author_posts_url_query_string = parse_url( $author_posts_url, PHP_URL_QUERY );
+							$author_posts_url_query_string = wp_parse_url( $author_posts_url, PHP_URL_QUERY );
 							if ( $author_posts_url_query_string ) {
 								$author_posts_url = str_replace(
 									'?' . $author_posts_url_query_string,
