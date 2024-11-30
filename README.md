@@ -25,6 +25,7 @@ The profile box don't have styles. So you need create CSS for this.
 * Twitter
 * X
 * Facebook
+* Threads
 * Instagram
 * Pinterest
 * YouTube

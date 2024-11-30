@@ -69,6 +69,7 @@ class Bootstrap {
 				'twitter'   => __( 'Twitter', 'inc2734-wp-profile-box' ),
 				'x'         => __( 'X', 'inc2734-wp-profile-box' ),
 				'facebook'  => __( 'Facebook', 'inc2734-wp-profile-box' ),
+				'threads'   => __( 'Threads', 'inc2734-wp-profile-box' ),
 				'instagram' => __( 'Instagram', 'inc2734-wp-profile-box' ),
 				'pinterest' => __( 'Pinterest', 'inc2734-wp-profile-box' ),
 				'youtube'   => __( 'YouTube', 'inc2734-wp-profile-box' ),
