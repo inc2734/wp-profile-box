@@ -21,6 +21,22 @@ new \Inc2734\WP_Profile_Box\Bootstrap();
 
 The profile box don't have styles. So you need create CSS for this.
 
+## Development
+
+Use Node.js 24.22.1 (selected by Volta), npm 11.18.0 or later, and Docker.
+
+```sh
+npm ci
+npm start
+npm test
+npm stop
+```
+
+PHP lint and PHPUnit run in a separate environment configured by `.wp-env.tests.json`
+on port 8889. Each check installs its Composer dependencies and stops the test
+environment afterward, including when it fails. The development environment remains
+running. Use `npm run test:php:stop` to stop an interrupted test environment.
+
 ## Support social accounts
 * Twitter
 * X
